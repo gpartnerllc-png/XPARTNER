@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CÂMERAS IP</title>
+    <link rel="icon" type="image/png" href="https://images.yampi.me/assets/stores/droppfy/uploads/icon/65f3d8c635540.png">
+<link rel="apple-touch-icon" href="https://images.yampi.me/assets/stores/droppfy/uploads/icon/65f3d8c635540.png">
+    <style>
+        :root {
+            --glass: rgba(255, 255, 255, 0.1);
+            --gold: #ffeb3b;
+            --accent: #8e44ad;
+        }
+
+        body {
+            margin: 0;
+            background: #050505;
+            color: white;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Fundo Animado */
+        .stars-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, #111 0%, #000 100%);
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(to right, #fff, var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 50px;
+        }
+
+        /* Grade de Banners Flutuantes */
+        .showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            perspective: 1000px;
+        }
+
+        .banner-card {
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 20px;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            cursor: pointer;
+            position: relative;
+            animation: float 6s ease-in-out infinite;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .banner-card:hover {
+            transform: translateY(-15px) scale(1.05);
+            border-color: var(--gold);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 20px rgba(255, 235, 59, 0.2);
+        }
+
+        .banner-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 15px;
+        }
+
+        .banner-card h3 { margin: 10px 0; font-size: 1.2rem; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Modal de Lead */
+        #leadModal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            justify-content: center; align-items: center;
+        }
+
+        .modal-content {
+            background: #111;
+            padding: 30px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 400px;
+            border: 1px solid var(--accent);
+            text-align: left;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            background: #222;
+            border: 1px solid #444;
+            color: white;
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+
+        button.submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: var(--accent);
+            border: none;
+            color: white;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="stars-bg"></div>
+
+<div class="container">
+    <header>
+    <h5>Cadastre para ter melhores preços</h5>
+        <h1>CÂMERAS IP</h1>
+    </header>
+
+    <div class="showcase">
+    
+    <div class="banner-card" onclick="openLeadModal('https://log.droppfy.com/', 'Droppfy Log')">
+        <img src="https://img.freepik.com/fotos-premium/3d-renderizacao-de-entrega-rapida-de-encomendas-em-todo-o-mundo-por-carro-aviao-scooter-para-compras-on-line_1398080-405.jpg" alt="Droppfy Log">
+        <h3>DROPPFY LOGISTICS AI</h3>
+        <p>Valor Melhor que Correios</p>
+    </div>
+
+    <div class="banner-card" onclick="openLeadModal('https://wa.me/message/Q7EM5CDXZQBVJ1', 'Suplementos')">
+        <img src="https://backend.intelbras.com/sites/default/files/styles/medium/public/2026-01/vip-7415-dual-ia-ft-02.png" alt="cam-ip">
+        <h3>Câmera IP bidirecional de 4 MP</h3>
+        <p>VIP 7415 DUAL IA FT</p>         
+    </div>
+        <div class="banner-card" onclick="openLeadModal('https://wa.me/message/Q7EM5CDXZQBVJ1', 'cam-ip')">
+        <img src="https://backend.intelbras.com/sites/default/files/styles/medium/public/2025-08/vip-7180-pan-ft-ligada.png" alt="cam-ip">
+        <h3>Câmera IP bullet panorâmica</h3>
+        <p>VIP 7180 PAN FT</p>        
+    </div>
+
+         <div class="banner-card" onclick="openLeadModal('https://wa.me/message/Q7EM5CDXZQBVJ1', 'cam-ip')">
+        <img src="https://backend.intelbras.com/sites/default/files/styles/medium/public/2025-07/vip-9420-ia-ft-01.png" alt="cam-ip">
+        <h3>Câmera IP com resolução de 4 MP</h3>
+        <p>VIP 9420 IA FT</p>
+    </div>
+        
+    <div class="banner-card" onclick="openLeadModal('https://wa.me/message/Q7EM5CDXZQBVJ1', 'cam-ip')">
+    <img src="https://underarmourbr.vtexassets.com/assets/vtex.file-manager-graphql/images/394d2df5-c9e0-4329-aa57-25006e944904___f95bc98a3e0afade615c6f1670030227.jpg" alt="Under Armour">
+    <h3>Câmera dome com Triple Light e IA</h3>
+    <p>VIP 5430 D TL IA</p>
+    </div>
+
+    <div class="banner-card" onclick="openLeadModal('https://wa.me/message/Q7EM5CDXZQBVJ1', 'cam-ip')">
+        <img src="https://backend.intelbras.com/sites/default/files/styles/medium/public/2025-07/vip-3230-fc%2B-ia-04.png" alt="cam-ip">
+        <h3>Câmera bullet com Full</h3>
+        <p>VIP 3230 FC+ IA</p>
+    </div>
+
+    <div class="banner-card" onclick="openLeadModal('https://wa.me/message/Q7EM5CDXZQBVJ1', 'cam-ip')">
+        <img src="https://backend.intelbras.com/sites/default/files/styles/medium/public/2024-12/vipw-1230-d-frontal-1.png" alt="cam-ip">
+        <h3>Câmera dome Wi-Fi</h3>
+        <p>VIPW 1230 D</p>
+    </div>
+
+        <div class="banner-card" onclick="openLeadModal('https://wa.me/message/Q7EM5CDXZQBVJ1', 'cam-ip')">
+        <img src="https://backend.intelbras.com/sites/default/files/styles/medium/public/2024-11/vip-5460-lpr-ia-front-2.png" alt="cam-ip">
+        <h3>Câmera IP leitura auto placas</h3>
+        <p>VIP 5460 LPR IA</p>
+    </div>
+        <div class="banner-card" onclick="openLeadModal('https://wa.me/message/Q7EM5CDXZQBVJ1', 'cam-ip')">
+        <img src="https://backend.intelbras.com/sites/default/files/styles/medium/public/2024-12/vipw-1230-b-persp-dir-1.png" alt="cam-ip">
+        <h3>Câmera Wi-Fi profissional</h3>
+        <p>VIPW 1230 B</p>
+    </div>
+
+        <div class="banner-card" onclick="openLeadModal('https://wa.me/message/Q7EM5CDXZQBVJ1', 'cam-ip')">
+        <img src="https://backend.intelbras.com/sites/default/files/styles/medium/public/2024-06/vip-1300-mini-sd-persp-esq.png" alt="cam-ip">
+        <h3>Câmera speed dome</h3>
+        <p>VIP 1300 MINI SD</p>
+    </div>
+
+         <div class="banner-card" onclick="openLeadModal('https://wa.me/message/Q7EM5CDXZQBVJ1', 'cam-ip')">
+        <img src="https://backend.intelbras.com/sites/default/files/styles/medium/public/2024-06/vipw-1300-mini-sd-frontal-_0.png" alt="cam-ip" width="60">
+        <h3>Câmera mini speed dome Wi-Fi</h3>
+        <p>VIPW 1300 MINI SD</p>
+    </div>
+
+        <div class="banner-card" onclick="openLeadModal('https://wa.me/message/Q7EM5CDXZQBVJ1', 'cam-ip')">
+        <img src="https://backend.intelbras.com/sites/default/files/styles/medium/public/2025-01/VIP%205250%20D%20IA_front-1_0.png" alt="cam-ip" width="60">
+        <h3>Câmera dome IA</h3>
+        <p>VIP 5440 D IA</p>
+    </div>
+
+         <div class="banner-card" onclick="openLeadModal('https://wa.me/message/Q7EM5CDXZQBVJ1', 'cam-ip')">
+        <img src="https://backend.intelbras.com/sites/default/files/styles/medium/public/2024-07/vipw-1430-b-persp-dir.png" alt="cam-ip" width="60">
+        <h3>Câmera IP Wi-Fi</h3>
+        <p>VIPW 1430 B</p>
+    </div>
+
+        <div class="banner-card" onclick="openLeadModal('https://wa.me/message/Q7EM5CDXZQBVJ1', 'cam-ip')">
+        <img src="https://backend.intelbras.com/sites/default/files/styles/medium/public/2024-06/xpe-3200-plus-persp-dir.png" alt="cam-ip" width="60">
+        <h3>Videoporteiro facial e QR Codes</h3>
+        <p>XPE 3200 PLUS IP</p>
+    </div>
+
+        <div class="banner-card" onclick="openLeadModal('https://wa.me/message/Q7EM5CDXZQBVJ1', 'cam-ip')">
+        <img src="https://backend.intelbras.com/sites/default/files/styles/medium/public/2022-08/th-1000-dt-pers-dir.png" alt="cam-ip" width="60">
+        <h3>Tag de acesso</h3>
+        <p>TH 1000 DT-13,56 MHz</p>
+    </div>
+
+         <div class="banner-card" onclick="openLeadModal('https://wa.me/message/Q7EM5CDXZQBVJ1', 'cam-ip')">
+        <img src="https://backend.intelbras.com/sites/default/files/styles/medium/public/2025-03/11%20LE%201310%20RF%20Persp%20Inf%20Esq_0.png" alt="leitor ip" width="60">
+        <h3>Leitor de Controle Remoto</h3>
+        <p>LE 1310 RF</p>
+    </div>
+
+        <div class="banner-card" onclick="openLeadModal('https://wa.me/message/Q7EM5CDXZQBVJ1', 'cam-ip')">
+        <img src="https://backend.intelbras.com/sites/default/files/styles/medium/public/2025-10/iME500-persp_dir_5.png" alt="cam-ip" width="60">
+        <h3>Câmera externa Wi-Fi Full HD</h3>
+        <p>iME 500 Full Color + micro SD 32GB</p>
+    </div>
+
+        <div class="banner-card" onclick="openLeadModal('https://wa.me/message/Q7EM5CDXZQBVJ1', 'cam-ip')">
+        <img src="https://backend.intelbras.com/sites/default/files/styles/medium/public/2025-06/attiv-seno-1800va-bi-bi-03.png" alt="nobreak" width="60">
+        <h3>Nobreak senoidal bivolt</h3>
+        <p>ATTIV SENO 1800VA-BI/BI+</p>
+    </div>
+
+         <div class="banner-card" onclick="openLeadModal('https://wa.me/message/Q7EM5CDXZQBVJ1', 'cam-ip')">
+        <img src="https://backend.intelbras.com/sites/default/files/styles/medium/public/2025-04/DCM%203002%20GW%20IA_persp-dir_0.png" alt="cam veicular" width="60">
+        <h3>Câmera veicular Dashcam</h3>
+        <p>DCM 3002 GW IA</p>
+    </div>
+
+          <div class="banner-card" onclick="openLeadModal('https://wa.me/message/Q7EM5CDXZQBVJ1', 'cam-ip')">
+        <img src="https://backend.intelbras.com/sites/default/files/styles/medium/public/2025-06/07%20Persp%20Esq_1.png" alt="AX WiFi 6" width="60">
+        <h3>Roteador AX WiFi 6</h3>
+        <p>RW 6302X</p>
+    </div>
+
+         <div class="banner-card" onclick="openLeadModal('https://wa.me/message/Q7EM5CDXZQBVJ1', 'cam-ip')">
+        <img src="https://backend.intelbras.com/sites/default/files/styles/medium/public/2025-05/EC-21-POWER-65W-Ga_6.png" alt="carregador" width="60">
+        <h3>Carregador Turbo 65W</h3>
+<p>EC 21 POWER 65W GaN</p>
+    </div>
+
+        <div class="banner-card" onclick="openLeadModal('https://wa.me/message/Q7EM5CDXZQBVJ1', 'cam-ip')">
+        <img src="https://intelbras.vtexassets.com/arquivos/ids/171722-800-auto?v=638781553335100000&width=800&height=auto&aspect=true" alt="rx wifi 6" width="60">
+        <h3>Roteador Wi-Fi 6</h3>
+<p>RX 3000</p>
+    </div>
+
+        <div class="banner-card" onclick="openLeadModal('https://wa.me/message/Q7EM5CDXZQBVJ1', 'cam-ip')">
+        <img src="https://intelbras.vtexassets.com/arquivos/ids/174181-800-auto?v=638875787000470000&width=800&height=auto&aspect=true" alt="lampada" width="60">
+        <h3>Câmera Lâmpada Interna</h3>
+<p>Inteligente IM6 Full</p>
+    </div>
+
+        <div class="banner-card" onclick="openLeadModal('https://wa.me/message/Q7EM5CDXZQBVJ1', 'cam-ip')">
+        <img src="https://intelbras.vtexassets.com/arquivos/ids/175346-800-auto?v=639007927567170000&width=800&height=auto&aspect=true" alt="fechadura" width="60">
+        <h3>Fechadura Digital</h3>
+<p>Embutir FR 221V</p>
+    </div>
+
+         <div class="banner-card" onclick="openLeadModal('https://wa.me/5541996670253', 'Market Home')">
+        <img src="https://intelbras.vtexassets.com/arquivos/ids/174271-800-auto?v=638899340934030000&width=800&height=auto&aspect=true" alt="kit" width="60">
+        <h3>Kit Câmera Inteligente</h3>
+        <p>IM3 C c/ Nobreak</p>
+    </div>
+
+        <div class="banner-card" onclick="openLeadModal('https://wa.me/556183446343', 'kit')">
+        <img src="https://intelbras.vtexassets.com/arquivos/ids/174826-800-auto?v=638966621092030000&width=800&height=auto&aspect=true" alt="kit" width="60">
+        <h3>Kit Projetor PFL 7560</h3>
+        <p>Smart TV Box 4k</p>
+    </div>
+        
+        <div class="banner-card" onclick="openLeadModal('https://wa.me/556183446343', 'kit')">
+        <img src="https://intelbras.vtexassets.com/arquivos/ids/162033-800-auto?v=638796337344370000&width=800&height=auto&aspect=true" alt="controle ep" width="60">
+        <h3>Controle Remoto EP</h3>
+        <p>Automatizador</p>
+    </div>
+        <div class="banner-card" onclick="openLeadModal('https://wa.me/message/Q7EM5CDXZQBVJ1', 'cam-ip')">
+        <img src="https://intelbras.vtexassets.com/arquivos/ids/170621-800-auto?v=638743721224630000&width=800&height=auto&aspect=true" alt="ip cam" width="60">
+        <h3>Câmera Inteligente Full</h3>
+        <p>iM5 SC Black IP67</p>
+    </div>
+         <div class="banner-card" onclick="openLeadModal('https://wa.me/message/Q7EM5CDXZQBVJ1', 'cam-ip')">
+        <img src="https://intelbras.vtexassets.com/arquivos/ids/166129-800-auto?v=638011149075370000&width=800&height=auto&aspect=true" alt="kit solar" width="60">
+        <h3>Kit Arandela Solar</h3>
+        <p>ASI 500 Dual Color</p>
+    </div>
+        <div class="banner-card" onclick="openLeadModal('https://wa.me/message/Q7EM5CDXZQBVJ1', 'cam-ip')">
+        <img src="https://home-cdn.reolink.us/wp-content/uploads/2025/10/100915166e0a3f2cfadfada6.png" alt="reolink" width="60">
+        <h3>Câmera inteligente PoE</h3>
+        <p>16MP com lente dupla holofote panorama 180°</p>
+    </div>
+        <div class="banner-card" onclick="openLeadModal('https://wa.me/message/Q7EM5CDXZQBVJ1', 'cam-ip')">
+        <img src="https://home-cdn.reolink.us/wp-content/uploads/2025/08/270159281756259968.7591.png" alt="reolink" width="60">
+        <h3>Câmera inteligente 2K 4MP 4G LTE PTZ</h3>
+        <p>lente dupla energia solar/bateria</p>
+    </div>
+      <div class="banner-card" onclick="openLeadModal('https://wa.me/message/Q7EM5CDXZQBVJ1', 'cam-ip')">
+        <img src="https://home-cdn.reolink.us/wp-content/uploads/2025/04/Go-Ranger-PT-1-Pack-SP3Camouflage.png" alt="reolink" width="60">
+        <h3>Go Ranger PT 4G LTE</h3>
+        <p>panorâmica de 360° 4K 8MP Ultra HD</p>
+    </div>
+
+</div>
+
+<div id="leadModal">
+    <div class="modal-content">
+        <h2 style="color: var(--gold)">Acesso Exclusivo</h2>
+        <p>Preencha para liberar o link oficial:</p>
+        <form id="leadForm">
+            <input type="text" id="name" placeholder="Nome Completo" required>
+            <input type="email" id="email" placeholder="Seu melhor E-mail" required>
+            <input type="tel" id="whatsapp" placeholder="WhatsApp (DDD)" required>
+            <button type="submit" class="submit-btn">LIBERAR ACESSO</button>
+        </form>
+        <p id="statusMsg" style="font-size: 12px; margin-top: 10px;"></p>
+    </div>
+</div>
+
+<script>
+    // CONFIGURAÇÕES DO TELEGRAM (Substitua pelos seus dados)
+    const TELEGRAM_TOKEN = '6714566885:AAG5wuBA_F9XUksSDtYKnzR4vk9w8m_d6Cc'; // Pegue no @BotFather
+    const CHAT_ID = '1703808186';      // Pegue no @userinfobot
+
+    let currentLink = '';
+    let currentProduct = '';
+
+    function openLeadModal(link, product) {
+        currentLink = link;
+        currentProduct = product;
+        document.getElementById('leadModal').style.display = 'flex';
+    }
+
+    document.getElementById('leadForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const whatsapp = document.getElementById('whatsapp').value;
+        const statusMsg = document.getElementById('statusMsg');
+
+        statusMsg.innerText = "Processando acesso...";
+
+        // Mensagem formatada para o Bot
+        const message = `🚀 **Novo Lead - xPartner**\n\n` +
+                        `👤 Nome: ${name}\n` +
+                        `📧 E-mail: ${email}\n` +
+                        `📱 Whats: ${whatsapp}\n` +
+                        `🛍️ Produto: ${currentProduct}`;
+
+        try {
+            const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    chat_id: CHAT_ID,
+                    text: message,
+                    parse_mode: 'Markdown'
+                })
+            });
+
+            if (response.ok) {
+                statusMsg.style.color = "#4CAF50";
+                statusMsg.innerText = "Sucesso! Redirecionando...";
+                setTimeout(() => {
+                    window.location.href = currentLink;
+                }, 1500);
+            } else {
+                throw new Error();
+            }
+        } catch (error) {
+            statusMsg.style.color = "#ff5252";
+            statusMsg.innerText = "Erro ao conectar. Tente novamente.";
+        }
+    });
+
+    // Fechar modal ao clicar fora
+    window.onclick = function(event) {
+        if (event.target == document.getElementById('leadModal')) {
+            document.getElementById('leadModal').style.display = "none";
+        }
+    }
+</script>
+
+    
+</body>
+</html>
